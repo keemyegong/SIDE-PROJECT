@@ -60,9 +60,11 @@ class Mouse :
                             gameDisplay.blit(self.cursor,(x*72+20,y*72+20)) 
                             if click[0] :
                                 self.turn = 0
+                                check[y][x] = 1
                                 switch_neko()
-                                # if not check_switch(y, x):
-                                #     switch_neko()
+                                if not check_switch(y, x):
+                                    switch_neko()
+                                cursor_set()
                         if click[2] :
                             self.turn = 0
                             cursor_set()
@@ -75,7 +77,6 @@ def switch_neko(): # neko swap
                 swap.append((y, x))
                 if len(swap) == 2:
                     neko[swap[0][0]][swap[0][1]], neko[swap[1][0]][swap[1][1]] = neko[swap[1][0]][swap[1][1]], neko[swap[0][0]][swap[0][1]]
-                    cursor_set()
 
 def check_neko(idx): # 상화좌우 3 조건 맞추면 7로 바꿔주기
     for y in range(map_y):
